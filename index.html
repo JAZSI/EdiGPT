@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>EdiGPT</title>
+    <link rel="icon" type="image/png" href="./images/avatar.png" />
+
+    <link href="style.css" rel="stylesheet" />
+    <link href="./fontawesome/css/all.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="sidenav">
+        <div class="new-chat-box"><i class="far fa-plus"></i> New chat</div>
+        <div class="bottom">
+          <ul>
+            <li><i class="fat fa-trash"></i> Clear conversations</li>
+            <li><i class="fat fa-external-link-alt"></i> Source code</li>
+            <li><i class="fat fa-sign-out"></i> Log out</li>
+          </ul>
+        </div>
+      </div>
+      <div class="header">
+        <h1>EdiGPT</h1>
+      </div>
+      <div id="chatcontainer">
+        <div id="chat">
+          <div class="chat-bubble-container chat-gpt-bubble-container"></div>
+        </div>
+        <div id="input-area">
+          <div id="input-container">
+            <form id="form">
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  placeholder="Send a message..."
+                  id="user-input"
+                  autocomplete="off"
+                />
+                <a><i class="fat fa-paper-plane"></i></a>
+              </div>
+            </form>
+          </div>
+          <p class="disclaimer">
+            This site was created by
+            <a href="https://jazsi.github.io/" target="_blank">Jaszi</a> |
+            <a href="#" onclick="handleInfoClick" id="infoBtn"
+              >click here to learn more about this site</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
