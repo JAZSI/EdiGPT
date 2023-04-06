@@ -1,57 +1,235 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>EdiGPT</title>
-    <link rel="icon" type="image/png" href="./images/avatar.png" />
-
+    <link rel="icon" href="./assets/vite.svg" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"
+    />
+    <!-- style.css -->
     <link href="style.css" rel="stylesheet" />
-    <link href="./fontawesome/css/all.css" rel="stylesheet" />
   </head>
-
   <body>
-    <div id="container">
-      <div class="sidenav">
-        <div class="new-chat-box"><i class="far fa-plus"></i> New chat</div>
-        <div class="bottom">
-          <ul>
-            <li><i class="fat fa-trash"></i> Clear conversations</li>
-            <li><i class="fat fa-external-link-alt"></i> Source code</li>
-            <li><i class="fat fa-sign-out"></i> Log out</li>
-          </ul>
+    <div class="overflow-hidden w-full h-full relative flex">
+      <!-- SideNav -->
+      <div class="dark hidden bg-gray-900 md:flex md:w-[260px] md:flex-col">
+        <div class="flex h-full min-h-0 flex-col">
+          <div
+            class="scrollbar-trigger flex h-full w-full flex-1 items-start border-white/20"
+          >
+            <nav class="flex h-full flex-1 flex-col space-y-1 p-2">
+              <a
+                href="./holylink.html"
+                class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm mb-2 flex-shrink-0 border border-white/20"
+                ><i class="fas fa-plus"></i>New chat</a
+              >
+              <div
+                class="flex-col flex-1 overflow-y-auto border-b border-white/20"
+              >
+                <div class="flex flex-col gap-2 text-gray-100 text-sm"></div>
+              </div>
+              <a
+                href="https://github.com/JAZSI/EdiGPT"
+                class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"
+                ><i class="fas fa-external-link-alt"></i>Source Code</a
+              ><a
+                href="./edimunity.html"
+                class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"
+                ><i class="fas fa-external-link-alt"></i>Join the edimunity</a
+              ><a
+                href="https://jaszi.vercel.app/contact"
+                class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"
+                ><i class="fas fa-external-link-alt"></i>Contact me</a
+              ><a
+                href="./login.html"
+                class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"
+                ><i class="fas fa-sign-out-alt"></i>Log out</a
+              >
+            </nav>
+          </div>
         </div>
       </div>
-      <div class="header">
-        <h1>EdiGPT</h1>
-      </div>
-      <div id="chatcontainer">
-        <div id="chat">
-          <div class="chat-bubble-container chat-gpt-bubble-container"></div>
-        </div>
-        <div id="input-area">
-          <div id="input-container">
-            <form id="form">
-              <div class="input-wrapper">
+
+      <div class="min-h-screen flex h-full max-w-full flex-1 flex-col">
+        <main
+          class="relative h-full w-full transition-width flex flex-col overflow-hidden items-stretch flex-1"
+        >
+          <div class="flex-1 overflow-hidden">
+            <div
+              class="min-h-screen max-w-full react-scroll-to-bottom--css-saufo-79elbk h-full dark:bg-gray-800"
+            >
+              <div class="react-scroll-to-bottom--css-saufo-1n7m0yu">
+                <div
+                  class="flex flex-col items-center text-sm dark:bg-gray-800"
+                >
+                  <div
+                    class="info-zone text-gray-800 w-full md:max-w-2xl lg:max-w-3xl md:h-full md:flex md:flex-col px-6 dark:text-gray-100"
+                  >
+                    <h1
+                      class="text-4xl font-semibold text-center mt-6 sm:mt-[20vh] ml-auto mr-auto mb-10 sm:mb-16 flex gap-2 items-center justify-center"
+                    >
+                      EdiGPT
+                    </h1>
+                    <div class="md:flex items-start text-center gap-3.5">
+                      <div class="flex flex-col mb-8 md:mb-auto gap-3.5 flex-1">
+                        <h2
+                          class="flex gap-3 items-center m-auto text-lg font-normal md:flex-col md:gap-2"
+                        >
+                          Examples
+                        </h2>
+                        <ul
+                          class="flex flex-col gap-3.5 w-full sm:max-w-md m-auto"
+                        >
+                          <button
+                            onclick="firstExample()"
+                            class="w-full bg-gray-50 dark:bg-white/5 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900"
+                          >
+                            "Explain quantum computing in Jaszi terms" →</button
+                          ><button
+                            onclick="secondExample()"
+                            class="w-full bg-gray-50 dark:bg-white/5 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900"
+                          >
+                            "Got any creative ideas for a Jaszi years old
+                            birthday?" →</button
+                          ><button
+                            onclick="thirdExample()"
+                            class="w-full bg-gray-50 dark:bg-white/5 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900"
+                          >
+                            "How do I make an HTTP request in Jasziscript?" →
+                          </button>
+                        </ul>
+                      </div>
+                      <div class="flex flex-col mb-8 md:mb-auto gap-3.5 flex-1">
+                        <h2
+                          class="flex gap-3 items-center m-auto text-lg font-normal md:flex-col md:gap-2"
+                        >
+                          Capabilities
+                        </h2>
+                        <ul
+                          class="flex flex-col gap-3.5 w-full sm:max-w-md m-auto"
+                        >
+                          <li
+                            class="w-full bg-gray-50 dark:bg-white/5 p-3 rounded-md"
+                          >
+                            Doesn't remember what user said earlier in the
+                            conversation
+                          </li>
+                          <li
+                            class="w-full bg-gray-50 dark:bg-white/5 p-3 rounded-md"
+                          >
+                            Doesn't allow user to provide follow-up corrections
+                          </li>
+                          <li
+                            class="w-full bg-gray-50 dark:bg-white/5 p-3 rounded-md"
+                          >
+                            Not trained to decline inappropriate requests
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="flex flex-col mb-8 md:mb-auto gap-3.5 flex-1">
+                        <h2
+                          class="flex gap-3 items-center m-auto text-lg font-normal md:flex-col md:gap-2"
+                        >
+                          Limitations
+                        </h2>
+                        <ul
+                          class="flex flex-col gap-3.5 w-full sm:max-w-md m-auto"
+                        >
+                          <li
+                            class="w-full bg-gray-50 dark:bg-white/5 p-3 rounded-md"
+                          >
+                            May occasionally generate incorrect Jaszi
+                            information
+                          </li>
+                          <li
+                            class="w-full bg-gray-50 dark:bg-white/5 p-3 rounded-md"
+                          >
+                            May occasionally generate Jaszi Insults
+                          </li>
+                          <li
+                            class="w-full bg-gray-50 dark:bg-white/5 p-3 rounded-md"
+                          >
+                            Limited knowledge of world and events before the
+                            great Jaszi war
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w-full flex-shrink-0" id="chat">
+                    <div
+                      class="chat-bubble-container chat-gpt-bubble-container"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="absolute bottom-0 left-0 w-full border-t md:border-t-0 dark:border-white/20 md:border-transparent md:dark:border-transparent md:bg-vert-light-gradient bg-white dark:bg-gray-800 md:!bg-transparent dark:md:bg-vert-dark-gradient pt-2"
+          >
+            <form id="form" class="max-w-3xl mx-auto">
+              <div
+                class="relative flex items-center border border-gray-300 bg-white dark:bg-gray-900 rounded-md shadow-sm"
+              >
                 <input
                   type="text"
                   placeholder="Send a message..."
                   id="user-input"
                   autocomplete="off"
+                  class="flex-1 h-10 px-3 py-2 outline-none"
                 />
-                <a><i class="fat fa-paper-plane"></i></a>
+                <a
+                  class="flex justify-center items-center h-10 w-10 rounded-md bg-gray-100 dark:bg-gray-800 transition-colors duration-200 cursor-pointer"
+                >
+                  <i class="fas fa-paper-plane text-gray-500"></i>
+                </a>
               </div>
             </form>
-          </div>
-          <p class="disclaimer">
-            This site was created by
-            <a href="https://jazsi.github.io/" target="_blank">Jaszi</a> |
-            <a href="#" onclick="handleInfoClick" id="infoBtn"
-              >click here to learn more about this site</a
+
+            <div
+              class="px-3 pt-2 pb-3 text-center text-xs text-gray-500 dark:text-gray-400 md:px-4 md:pt-3 md:pb-6"
             >
-          </p>
-        </div>
+              This website was created by
+              <a
+                href="https://jazsi.github.io/"
+                target="_blank"
+                class="underline"
+                >Jaszi</a
+              >
+              |
+              <a href="#" onclick="handleInfoClick" id="infoBtn"
+                >click here to learn more about this website.</a
+              >
+            </div>
+          </div>
+        </main>
       </div>
     </div>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- script.js -->
     <script src="script.js"></script>
+
+    <script>
+      function firstExample() {
+        document.getElementById("user-input").value =
+          "Explain quantum computing in Jaszi terms";
+      }
+
+      function secondExample() {
+        document.getElementById("user-input").value =
+          "Got any creative ideas for a Jaszi years old birthday";
+      }
+
+      function thirdExample() {
+        document.getElementById("user-input").value =
+          "How do I make an HTTP request in Jasziscript";
+      }
+    </script>
   </body>
 </html>
