@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const infoBtn = document.getElementById("infoBtn");
   const infoZone = document.querySelector(".info-zone");
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     if (userInput.value !== "") {
@@ -55,6 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
           responses[Math.floor(Math.random() * responses.length)];
         msg = randomResponse;
       }
+      
+      // const msg = await chatBot(userString, "Jaszii/DialoGPT-Edi", "***")
 
       let newBubble2Container = document.createElement("div");
       newBubble2Container.classList.add(
@@ -89,10 +91,11 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", handleSubmit);
 
   const infoText = [
-    "Hello UwU~ I'm Jaszi!",
-    "Behold!!! EdiGPT!!!! (I tried my best to replicate the layout and design of ChatGPT)",
-    "It's not the same as the actual chatGPT tho it won't help you with any questions.",
-    'This website is based on my friend (She also did the profile artwork for the "bot")',
+    "Hello UwU~ I'm Jaszi! I created this website UwU~",
+    "Behold!!! EdiGPT!!!! DUN DUN DUN DUUUUUUUUN!!!!",
+    "EdiGPT is a fun project that parodies the ChatGPT website, but with a twist! Instead of a fully functional chatbot, EdiGPT simply replies with random words (Why? Idk).",
+    'Why "EdiGPT"? Idk I just named it after my friend LOL',
+    "Source Code: https://github.com/JAZSI/EdiGPT",
     "I hope you enjoy the website!",
   ];
 
@@ -135,3 +138,27 @@ document.addEventListener("DOMContentLoaded", function () {
     createLine(0);
   }
 });
+
+async function chatBot(input, model, huggingFaceToken) {
+  const payload = {
+    inputs: {
+      text: input,
+    },
+  };
+  const response = await fetch(
+    `https://api-inference.huggingface.co/models/${model}`,
+    {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: { Authorization: "Bearer " + huggingFaceToken },
+    }
+  );
+  const data = await response.json();
+  let botResponse = "";
+  if (data.hasOwnProperty("generated_text")) {
+    botResponse = data.generated_text;
+  } else if (data.hasOwnProperty("error")) {
+    botResponse = data.error;
+  }
+  return botResponse;
+}
